@@ -1,7 +1,9 @@
 # Upload photos of space to Telegram
 Automate the collection of space photos to publish them on Telegram.
 
-## Example
+## Usage
+1. Run `download_images.py` to download space photos.
+2. Run `space_bot.py` to post photos once a day in Telegram group.
 
 ## Getting Started
 ### Prerequisites

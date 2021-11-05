@@ -21,7 +21,7 @@ def download_image(url, dir, filename, params=None):
 
 
 def fetch_spacex_last_launch():
-    
+
     """ Find lasest launch fotos and download its """
 
     spacex_dir = create_dir("images")
@@ -54,7 +54,7 @@ def create_dir(dir):
 
 
 def fetch_apod_pictures(api_key):
-    
+
     """ Download NASA APOD (Astronomy Picture of the Day)"""
 
     apod_dir = create_dir("apod_images")
@@ -63,7 +63,7 @@ def fetch_apod_pictures(api_key):
         "api_key": api_key,
         "count": '10'
     }
-    
+
     Astronomy_pictures = requests.get(
         url=NASA_APOD_URL,
         params=params
@@ -81,7 +81,7 @@ def fetch_apod_pictures(api_key):
 
 
 def fetch_epic_image(api_key):
-    
+
     """ Download NASA EPIC (Earth Polychromatic Imaging Camera)"""
 
     image_count = 5
@@ -104,7 +104,7 @@ def fetch_epic_image(api_key):
             image_url,
             epic_dir,
             f"epic{index}.png",
-            params            
+            params
         )
 
 
@@ -121,15 +121,15 @@ def get_date_from_str(datestr):
 
 
 def main():
-    
+
     load_dotenv()
     nasa_api_key = os.getenv("NASA_API_KEY")
-    
+
     fetch_epic_image(nasa_api_key)
-    
+
     fetch_apod_pictures(nasa_api_key)
 
     fetch_spacex_last_launch()
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

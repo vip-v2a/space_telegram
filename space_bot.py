@@ -8,8 +8,8 @@ def main():
 
     load_dotenv()
     bot_token = os.getenv("BOT_TOKEN")
-    delay =  int(os.getenv("DELAY", default=60*60*24))
-    chat_id="@myspacephotos"
+    delay = int(os.getenv("DELAY", default=60*60*24))
+    chat_id = "@myspacephotos"
 
     images_paths = iter(get_images_paths())
     while True:
@@ -35,7 +35,5 @@ def get_images_paths():
     return images_paths
 
 
-
-
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
