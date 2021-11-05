@@ -9,6 +9,7 @@ Automate the collection of space photos to publish them on Telegram.
 You need create environment variables:
 - `NASA_API_KEY` NASA API Token.
 - `BOT_TOKEN` from @Bot_father.
+- `DELAY` time delay between bot Telegram posts (default, 1 day). You can set new value if you need another time period.
 
 If you need [creation of virtual environment](https://vc.ru/dev/240211-nastroyka-rabochego-okruzheniya-na-windows-dlya-raboty-s-python).
 
@@ -28,28 +29,16 @@ Type command in Command Prompt:
 ```
 set NASA_API_KEY=your-API-key-here
 set BOT_TOKEN=your-bot-API-token
+set DELAY=your-new-time-delay-ms
 ```
 
 ### python-telegram-bot documentation
-[Getting started](https://python-telegram-bot.org/)
+[Getting started.](https://python-telegram-bot.org/)
 
-[How to create channel with bot](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
+[How to create channel with bot.](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 
-[python-telegram-bot. Pure API. Snippets](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Code-snippets#working-with-files-and-media)
+[python-telegram-bot. Pure API. Snippets.](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Code-snippets#working-with-files-and-media)
 
-### Deploy on Heroku
-- Repository has `.Procfile` to deploy on Heroku.
-- Logs are printed into Telegram (`TELEGRAM_ID`).
+### Project Goals
 
-To deploy on [Heroku](https://heroku.com/): 
-- create a new app on European server.
-- create Reveal Config Vars from 'Settings' tab (How to generate a Google credential see below). 
-- open 'Deploy' tab on the top menu.
-- connect to your github profile.
-- select your bots repository.
-- choose a branch to deploy 'master' .
-- press 'Deploy Branch'.
-- waiting 'Your app was successfully deployed'.
-- go to 'Recources' tab.
-- turn on dynos (if need, edit dino formation -> then switch ON dino app -> confirm).
-- drink a cup of tea)
+The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
