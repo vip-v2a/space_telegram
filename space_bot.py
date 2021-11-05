@@ -27,7 +27,7 @@ def main():
     #     chat_id="@myspacephotos",
     #     text="Hello world"
     # )
-    bot.send_document(chat_id=chat_id, document=open('tests/test.png', 'rb'))
+    bot.send_photo(chat_id=chat_id, photo=open("images/spacex0.jpg", "rb"))
 
 
 if __name__=="__main__":

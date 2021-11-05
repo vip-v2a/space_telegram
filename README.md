@@ -35,6 +35,7 @@ set BOT_TOKEN=your-bot-API-token
 
 [How to create channel with bot](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 
+[python-telegram-bot. Pure API. Snippets](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Code-snippets#working-with-files-and-media)
 
 ### Deploy on Heroku
 - Repository has `.Procfile` to deploy on Heroku.
