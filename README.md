@@ -6,8 +6,9 @@ Automate the collection of space photos to publish them on Telegram.
 ## Getting Started
 ### Prerequisites
 
-You need create environment variable:
+You need create environment variables:
 - `NASA_API_KEY` NASA API Token.
+- `BOT_TOKEN` from @Bot_father.
 
 If you need [creation of virtual environment](https://vc.ru/dev/240211-nastroyka-rabochego-okruzheniya-na-windows-dlya-raboty-s-python).
 
@@ -26,7 +27,13 @@ pip install -r requirements.txt
 Type command in Command Prompt:
 ```
 set NASA_API_KEY=your-API-key-here
+set BOT_TOKEN=your-bot-API-token
 ```
+
+### python-telegram-bot documentation
+[Getting started](https://python-telegram-bot.org/)
+
+[How to create channel with bot](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 
 
 ### Deploy on Heroku
