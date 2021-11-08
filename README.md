@@ -2,6 +2,7 @@
 Automate the collection of space photos to publish them on Telegram.
 
 ## Usage
+0. Create enviroment variables. See a topic "Create enviroment variable" for example.
 1. Run `download_images.py` to download space photos.
 2. Run `space_bot.py` to post photos once a day in Telegram group.
 
@@ -12,6 +13,7 @@ You need create environment variables:
 - `NASA_API_KEY` NASA API Token.
 - `BOT_TOKEN` from @Bot_father.
 - `DELAY` time delay between bot Telegram posts (default, 1 day). You can set new value if you need another time period.
+- `CHAT_ID` chat id Telegram group where bot was added (example, "@groupname").
 
 If you need [creation of virtual environment](https://vc.ru/dev/240211-nastroyka-rabochego-okruzheniya-na-windows-dlya-raboty-s-python).
 
@@ -32,6 +34,7 @@ Type command in Command Prompt:
 set NASA_API_KEY=your-API-key-here
 set BOT_TOKEN=your-bot-API-token
 set DELAY=your-new-time-delay-ms
+set CHAT_ID=@tggroupname
 ```
 
 ### python-telegram-bot documentation

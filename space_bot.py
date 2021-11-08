@@ -9,23 +9,26 @@ def main():
     load_dotenv()
     bot_token = os.getenv("BOT_TOKEN")
     delay = int(os.getenv("DELAY", default=60*60*24))
-    chat_id = "@myspacephotos"
+    chat_id = os.getenv("CHAT_ID")
+    
+    images_folders = ["apod_images", "epic_images", "images"]
+    
+    bot = telegram.Bot(token=bot_token)
 
-    images_paths = iter(get_images_paths())
     while True:
-        bot = telegram.Bot(token=bot_token)
-        bot.send_photo(
-            chat_id=chat_id,
-            photo=open(next(images_paths), "rb")
-        )
-        time.sleep(delay)
+        images_paths = get_images_paths(images_folders)
+        for image_path in images_paths:
+            with open(image_path, "rb") as space_image:
+                bot.send_photo(
+                    chat_id=chat_id,
+                    photo=space_image
+                )
+            time.sleep(delay)
 
 
-def get_images_paths():
+def get_images_paths(images_folders):
     images_paths = []
     image_extensions = [".jpg", ".png"]
-    files = os.listdir(".")
-    images_folders = filter(lambda x: "image" in x, files)
     for folder in images_folders:
         folder_images = os.listdir(folder)
         for image in folder_images:

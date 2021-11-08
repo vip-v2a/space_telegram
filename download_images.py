@@ -4,11 +4,6 @@ from urllib.parse import urlsplit, unquote
 from dotenv import load_dotenv
 from datetime import datetime
 
-SPACEX_URL = "https://api.spacexdata.com/v4/launches"
-NASA_APOD_URL = "https://api.nasa.gov/planetary/apod"
-NASA_EPIC_IMAGE_URL = "https://api.nasa.gov/EPIC/archive/natural"
-NASA_EPIC_URL = "https://api.nasa.gov/EPIC/api/natural/images"
-
 
 def download_image(url, dir, filename, params=None):
     response = requests.get(url, params)
@@ -23,10 +18,12 @@ def download_image(url, dir, filename, params=None):
 def fetch_spacex_last_launch():
 
     """ Find lasest launch fotos and download its """
+    
+    spacex_url = "https://api.spacexdata.com/v4/launches"
 
     spacex_dir = create_dir("images")
 
-    all_launches = requests.get(SPACEX_URL)
+    all_launches = requests.get(spacex_url)
     all_launches.raise_for_status()
     images_url_list = []
 
@@ -58,6 +55,7 @@ def fetch_apod_pictures(api_key):
     """ Download NASA APOD (Astronomy Picture of the Day)"""
 
     apod_dir = create_dir("apod_images")
+    nasa_apod_url = "https://api.nasa.gov/planetary/apod"
 
     params = {
         "api_key": api_key,
@@ -65,7 +63,7 @@ def fetch_apod_pictures(api_key):
     }
 
     Astronomy_pictures = requests.get(
-        url=NASA_APOD_URL,
+        url=nasa_apod_url,
         params=params
     )
     Astronomy_pictures.raise_for_status()
@@ -86,12 +84,14 @@ def fetch_epic_image(api_key):
 
     image_count = 5
     epic_dir = create_dir("epic_images")
+    nasa_epic_url = "https://api.nasa.gov/EPIC/api/natural/images"
+
 
     params = {
         "api_key": api_key
     }
 
-    epic_images = requests.get(NASA_EPIC_URL, params)
+    epic_images = requests.get(nasa_epic_url, params)
     epic_images.raise_for_status()
 
     for index, image in enumerate(epic_images.json()):
@@ -109,8 +109,10 @@ def fetch_epic_image(api_key):
 
 
 def get_epic_image_url(name, date):
+    
+    nasa_epic_image_url = "https://api.nasa.gov/EPIC/archive/natural"
     date = get_date_from_str(date)
-    url = f"{NASA_EPIC_IMAGE_URL}/{date}/png/{name}.png"
+    url = f"{nasa_epic_image_url}/{date}/png/{name}.png"
     return url
 
 
