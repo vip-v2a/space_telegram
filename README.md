@@ -4,6 +4,7 @@ Automate the collection of space photos to publish them on Telegram.
 ## Usage
 0. Create enviroment variables. See a topic "Create enviroment variable" for example.
 1. Run `download_images.py` to download space photos.
+
 2. Run `space_bot.py` to post photos once a day in Telegram group.
 
 ## Getting Started

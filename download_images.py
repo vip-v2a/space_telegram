@@ -16,12 +16,12 @@ def download_image(url, dir, filename, params=None):
 
 
 def fetch_spacex_last_launch():
-
-    """ Find lasest launch fotos and download its """
+    """Find the latest launch fotos and download its."""
     
+    spacex_dir = "images"
     spacex_url = "https://api.spacexdata.com/v4/launches"
 
-    spacex_dir = create_dir("images")
+    os.makedirs(spacex_dir, exist_ok=True)
 
     all_launches = requests.get(spacex_url)
     all_launches.raise_for_status()
@@ -39,27 +39,29 @@ def fetch_spacex_last_launch():
 def get_url_file_extension(url):
     url_path = urlsplit(url).path
     url_path = unquote(url_path)
-    _, basename = os.path.split(url_path)
-    _, extension = os.path.splitext(basename)
+    _, extension = os.path.splitext(url_path)
     return extension
 
 
-def create_dir(dir):
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-    return dir
-
-
-def fetch_apod_pictures(api_key):
-
-    """ Download NASA APOD (Astronomy Picture of the Day)"""
-
-    apod_dir = create_dir("apod_images")
+def fetch_apod_pictures(api_key, count=10):
+    """Download NASA Astronomy Picture of the Day (APOD).
+    
+    Args:
+        api_key (str): NASA API Token.
+        count (int, optional): Number of pictures to upload.
+            Defaults to 10.
+    
+    Returns:
+        None.
+    """
+    apod_dir = "apod_images"
     nasa_apod_url = "https://api.nasa.gov/planetary/apod"
+    
+    os.makedirs(apod_dir, exist_ok=True)
 
     params = {
         "api_key": api_key,
-        "count": '10'
+        "count": count
     }
 
     Astronomy_pictures = requests.get(
@@ -69,23 +71,29 @@ def fetch_apod_pictures(api_key):
     Astronomy_pictures.raise_for_status()
 
     for index, picture in enumerate(Astronomy_pictures.json()):
-        picture_url = picture["url"]
-        extension = get_url_file_extension(picture_url)
+        extension = get_url_file_extension(picture["url"])
         download_image(
-            url=picture_url,
+            url=picture["url"],
             dir=apod_dir,
             filename=f"apod{index}{extension}"
         )
 
 
-def fetch_epic_image(api_key):
-
-    """ Download NASA EPIC (Earth Polychromatic Imaging Camera)"""
-
-    image_count = 5
-    epic_dir = create_dir("epic_images")
+def fetch_epic_image(api_key, count=5):
+    """Download NASA Earth Polychromatic Imaging Camera (EPIC).
+    
+    Args:
+        api_key (str): NASA API Token.
+        count (int, optional): Number of images to upload.
+            Defaults to 5.
+    
+    Returns:
+        None.
+    """
+    epic_dir = "epic_images"
     nasa_epic_url = "https://api.nasa.gov/EPIC/api/natural/images"
 
+    os.makedirs(epic_dir, exist_ok=True)
 
     params = {
         "api_key": api_key
@@ -95,7 +103,7 @@ def fetch_epic_image(api_key):
     epic_images.raise_for_status()
 
     for index, image in enumerate(epic_images.json()):
-        if index == image_count:
+        if index == count:
             break
         image_url = get_epic_image_url(
             name=image["image"],
@@ -109,17 +117,11 @@ def fetch_epic_image(api_key):
 
 
 def get_epic_image_url(name, date):
-    
     nasa_epic_image_url = "https://api.nasa.gov/EPIC/archive/natural"
-    date = get_date_from_str(date)
+    date = datetime.strptime(date[:10], "%Y-%m-%d").date()
+    date = f"{date:%Y/%m/%d}"
     url = f"{nasa_epic_image_url}/{date}/png/{name}.png"
     return url
-
-
-def get_date_from_str(datestr):
-    date = datetime.strptime(datestr[:10], "%Y-%m-%d").date()
-    date = f"{date:%Y/%m/%d}"
-    return date
 
 
 def main():
