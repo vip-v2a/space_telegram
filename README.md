@@ -4,8 +4,18 @@ Automate the collection of space photos to publish them on Telegram.
 ## Usage
 0. Create enviroment variables. See a topic "Create enviroment variable" for example.
 1. Run `download_images.py` to download space photos.
+```
+python download_images.py
+```
+Folders `apod_images`, `epic_images`, `images` will be created.
+![](https://github.com/vip-v2a/space_telegram/blob/ff70cc96f37b8323293d501f60e726e0db21d87b/ext/images.JPG)
 
 2. Run `space_bot.py` to post photos once a day in Telegram group.
+```
+python space_bot.py
+```
+Then you see messages in Telegram group:
+![](https://github.com/vip-v2a/space_telegram/blob/ff70cc96f37b8323293d501f60e726e0db21d87b/ext/space_bot.gif)
 
 ## Getting Started
 ### Prerequisites

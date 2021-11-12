@@ -17,7 +17,7 @@ def download_image(url, dir, filename, params=None):
 
 def fetch_spacex_last_launch():
     """Find the latest launch fotos and download its."""
-    
+
     spacex_dir = "images"
     spacex_url = "https://api.spacexdata.com/v4/launches"
 
@@ -45,18 +45,18 @@ def get_url_file_extension(url):
 
 def fetch_apod_pictures(api_key, count=10):
     """Download NASA Astronomy Picture of the Day (APOD).
-    
+
     Args:
         api_key (str): NASA API Token.
         count (int, optional): Number of pictures to upload.
             Defaults to 10.
-    
+
     Returns:
         None.
     """
     apod_dir = "apod_images"
     nasa_apod_url = "https://api.nasa.gov/planetary/apod"
-    
+
     os.makedirs(apod_dir, exist_ok=True)
 
     params = {
@@ -81,12 +81,12 @@ def fetch_apod_pictures(api_key, count=10):
 
 def fetch_epic_image(api_key, count=5):
     """Download NASA Earth Polychromatic Imaging Camera (EPIC).
-    
+
     Args:
         api_key (str): NASA API Token.
         count (int, optional): Number of images to upload.
             Defaults to 5.
-    
+
     Returns:
         None.
     """
