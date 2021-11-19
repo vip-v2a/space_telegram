@@ -25,14 +25,14 @@ def fetch_spacex_last_launch():
 
     all_launches = requests.get(spacex_url)
     all_launches.raise_for_status()
-    images_url_list = []
+    images_url = []
 
     for launche in all_launches.json()[::-1]:
-        images_url_list = launche["links"]["flickr"]["original"]
-        if images_url_list:
+        images_url = launche["links"]["flickr"]["original"]
+        if images_url:
             break
 
-    for index, image_url in enumerate(images_url_list):
+    for index, image_url in enumerate(images_url):
         download_image(image_url, spacex_dir, f"spacex{index}.jpg")
 
 
