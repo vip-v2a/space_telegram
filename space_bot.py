@@ -8,11 +8,11 @@ def main():
 
     load_dotenv()
     bot_token = os.getenv("BOT_TOKEN")
-    delay = int(os.getenv("DELAY", default=60*60*24))
+    delay = int(os.getenv("DELAY", default=86400))
     chat_id = os.getenv("CHAT_ID")
-    
+
     images_folders = ["apod_images", "epic_images", "images"]
-    
+
     bot = telegram.Bot(token=bot_token)
 
     while True:
