@@ -27,8 +27,8 @@ def fetch_spacex_last_launch():
     all_launches.raise_for_status()
     images_url = []
 
-    for launche in all_launches.json()[::-1]:
-        images_url = launche["links"]["flickr"]["original"]
+    for launch in all_launches.json()[::-1]:
+        images_url = launch["links"]["flickr"]["original"]
         if images_url:
             break
 
@@ -48,7 +48,7 @@ def fetch_apod_pictures(api_key, count=10):
 
     Args:
         api_key (str): NASA API Token.
-        count (int, optional): Number of pictures to upload.
+        count (int, optional): Number of pictures to download.
             Defaults to 10.
 
     Returns:
@@ -84,7 +84,7 @@ def fetch_epic_image(api_key, count=5):
 
     Args:
         api_key (str): NASA API Token.
-        count (int, optional): Number of images to upload.
+        count (int, optional): Number of images to download.
             Defaults to 5.
 
     Returns:
