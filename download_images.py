@@ -64,13 +64,13 @@ def fetch_apod_pictures(api_key, count=10):
         "count": count
     }
 
-    Astronomy_pictures = requests.get(
+    astronomy_pictures = requests.get(
         url=nasa_apod_url,
         params=params
     )
-    Astronomy_pictures.raise_for_status()
+    astronomy_pictures.raise_for_status()
 
-    for index, picture in enumerate(Astronomy_pictures.json()):
+    for index, picture in enumerate(astronomy_pictures.json()):
         extension = get_url_file_extension(picture["url"])
         download_image(
             url=picture["url"],
