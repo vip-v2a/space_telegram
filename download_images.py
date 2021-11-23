@@ -118,7 +118,7 @@ def fetch_epic_images(api_key, count=5):
 
 def get_epic_image_url(name, date):
     nasa_epic_image_url = "https://api.nasa.gov/EPIC/archive/natural"
-    date = datetime.strptime(date[:10], "%Y-%m-%d").date()
+    date = datetime.strptime(date[:10], "%Y-%m-%d")
     date = f"{date:%Y/%m/%d}"
     url = f"{nasa_epic_image_url}/{date}/png/{name}.png"
     return url
