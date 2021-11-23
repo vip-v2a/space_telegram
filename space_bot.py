@@ -11,30 +11,30 @@ def main():
     delay = int(os.getenv("DELAY", default=86400))
     chat_id = os.getenv("CHAT_ID")
 
-    images_folders = ["apod_images", "epic_images", "images"]
+    image_folders = ["apod_images", "epic_images", "images"]
 
     bot = telegram.Bot(token=bot_token)
 
     while True:
-        images_paths = get_images_paths(images_folders)
-        for image_path in images_paths:
-            publish_image_in_telegram(image_path, bot, chat_id)
+        image_paths = get_image_paths(image_folders)
+        for image_path in image_paths:
+            post_image_in_telegram(image_path, bot, chat_id)
             time.sleep(delay)
 
 
-def get_images_paths(images_folders):
-    images_paths = []
+def get_image_paths(image_folders):
+    image_paths = []
     image_extensions = [".jpg", ".png"]
-    for folder in images_folders:
+    for folder in image_folders:
         folder_images = os.listdir(folder)
         for image in folder_images:
             _, extension = os.path.splitext(image)
             if extension in image_extensions:
-                images_paths.append(os.path.join(folder, image))
-    return images_paths
+                image_paths.append(os.path.join(folder, image))
+    return image_paths
 
 
-def publish_image_in_telegram(image_path, bot, chat_id):
+def post_image_in_telegram(image_path, bot, chat_id):
     with open(image_path, "rb") as space_image:
         bot.send_photo(
             chat_id=chat_id,

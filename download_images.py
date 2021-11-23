@@ -25,14 +25,14 @@ def fetch_spacex_last_launch():
 
     all_launches = requests.get(spacex_url)
     all_launches.raise_for_status()
-    images_url = []
+    image_urls = []
 
     for launch in all_launches.json()[::-1]:
-        images_url = launch["links"]["flickr"]["original"]
-        if images_url:
+        image_urls = launch["links"]["flickr"]["original"]
+        if image_urls:
             break
 
-    for index, image_url in enumerate(images_url):
+    for index, image_url in enumerate(image_urls):
         download_image(image_url, spacex_dir, f"spacex{index}.jpg")
 
 
@@ -79,7 +79,7 @@ def fetch_apod_pictures(api_key, count=10):
         )
 
 
-def fetch_epic_image(api_key, count=5):
+def fetch_epic_images(api_key, count=5):
     """Download NASA Earth Polychromatic Imaging Camera (EPIC).
 
     Args:
@@ -129,7 +129,7 @@ def main():
     load_dotenv()
     nasa_api_key = os.getenv("NASA_API_KEY")
 
-    fetch_epic_image(nasa_api_key)
+    fetch_epic_images(nasa_api_key)
 
     fetch_apod_pictures(nasa_api_key)
 
