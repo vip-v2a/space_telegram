@@ -18,11 +18,7 @@ def main():
     while True:
         images_paths = get_images_paths(images_folders)
         for image_path in images_paths:
-            with open(image_path, "rb") as space_image:
-                bot.send_photo(
-                    chat_id=chat_id,
-                    photo=space_image
-                )
+            publish_image_in_telegram(image_path, bot, chat_id)
             time.sleep(delay)
 
 
@@ -36,6 +32,14 @@ def get_images_paths(images_folders):
             if extension in image_extensions:
                 images_paths.append(os.path.join(folder, image))
     return images_paths
+
+
+def publish_image_in_telegram(image_path, bot, chat_id):
+    with open(image_path, "rb") as space_image:
+        bot.send_photo(
+            chat_id=chat_id,
+            photo=space_image
+        )
 
 
 if __name__ == "__main__":
